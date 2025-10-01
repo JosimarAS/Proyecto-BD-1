@@ -1,5 +1,22 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
 -- -----------------------------------------------------
--- Table `mydb`.`mk_buildings` (EDIFICIOS)
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8mb3 ;
+USE `mydb` ;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`mk_buildings`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_buildings` (
   `BuildingId` INT NOT NULL AUTO_INCREMENT,
@@ -18,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_buildings` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Table `mydb`.`mk_spaces` (ESPACIOS/LOCALES)
+-- Table `mydb`.`mk_spaces`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_spaces` (
   `SpaceId` INT NOT NULL AUTO_INCREMENT,
@@ -38,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_spaces` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Table `mydb`.`mk_contracts` (CONTRATOS)
+-- Table `mydb`.`mk_contracts`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_contracts` (
   `ContractId` INT NOT NULL AUTO_INCREMENT,
@@ -66,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_contracts` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Table `mydb`.`mk_operational_expenses` (GASTOS OPERATIVOS)
+-- Table `mydb`.`mk_operational_expenses`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_operational_expenses` (
   `ExpenseId` INT NOT NULL AUTO_INCREMENT,
@@ -86,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_operational_expenses` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Table `mydb`.`mk_monthly_settlements` (LIQUIDACIONES MENSUALES)
+-- Table `mydb`.`mk_monthly_settlements` 
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_monthly_settlements` (
   `SettlementId` INT NOT NULL AUTO_INCREMENT,
@@ -109,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_monthly_settlements` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Table `mydb`.`mk_user_roles` (ROLES DE USUARIO)
+-- Table `mydb`.`mk_user_roles` 
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_user_roles` (
   `UserRoleId` INT NOT NULL AUTO_INCREMENT,
@@ -132,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_user_roles` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Table `mydb`.`mk_sales_payments` (PAGOS DE VENTAS)
+-- Table `mydb`.`mk_sales_payments` 
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_sales_payments` (
   `PaymentId` INT NOT NULL AUTO_INCREMENT,
@@ -152,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_sales_payments` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Tabla DIRECCIONES (mk_address)
+-- Table `mydb`.`mk_address`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_address` (
   `AddressId` INT NOT NULL AUTO_INCREMENT,
@@ -164,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_address` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Tabla COMERCIOS (mk_commerces)
+-- Table `mydb`.`mk_commerces`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_commerces` (
   `CommerceId` INT NOT NULL AUTO_INCREMENT,
@@ -175,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_commerces` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Tabla USUARIOS (mk_users)
+-- Table `mydb`.`mk_users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_users` (
   `UserID` INT NOT NULL AUTO_INCREMENT,
@@ -186,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_users` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Tabla PRODUCTOS (mk_products)
+-- Table `mydb`.`mk_products`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_products` (
   `ProductID` INT NOT NULL AUTO_INCREMENT,
@@ -205,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_products` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Tabla FACTURAS (mk_facturas)
+-- Table `mydb`.`mk_facturas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_facturas` (
   `FacturaID` INT NOT NULL AUTO_INCREMENT,
@@ -229,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_facturas` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Tabla DETALLE FACTURAS (mk_detallefacturas)
+-- Table `mydb`.`mk_detallefacturas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_detallefacturas` (
   `DetalleFacturaID` INT NOT NULL AUTO_INCREMENT,
@@ -254,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_detallefacturas` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
--- Tabla LOGS (mk_logs)
+-- Table `mydb`.`mk_logs`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`mk_logs` (
   `LogId` INT NOT NULL AUTO_INCREMENT,
@@ -272,3 +289,208 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mk_logs` (
   `Mk_Traduccion_TraduccionId` INT NOT NULL,
   PRIMARY KEY (`LogId`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb3;
+
+
+
+
+
+
+-- RegisterSale:
+
+DELIMITER $$
+CREATE PROCEDURE registerSale(
+    IN p_product_name VARCHAR(100),
+    IN p_store_name VARCHAR(100),
+    IN p_quantity INT,
+    IN p_amount_paid DECIMAL(10,2),
+    IN p_payment_method VARCHAR(50),
+    IN p_payment_confirmations VARCHAR(255),
+    IN p_reference_numbers VARCHAR(255),
+    IN p_invoice_number VARCHAR(50),
+    IN p_customer VARCHAR(100),
+    IN p_applied_discounts DECIMAL(10,2),
+    IN p_computer VARCHAR(100),
+    IN p_username VARCHAR(50)
+)
+BEGIN
+    DECLARE v_product_id INT;
+    DECLARE v_commerce_id INT;
+    DECLARE v_current_inventory INT;
+    DECLARE v_factura_id INT;
+    DECLARE v_checksum INT;
+
+    -- Manejo de errores
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+
+    -- Obtener IDs del producto y comercio
+    SELECT p.ProductID, p.MK_Commerces_CommerceId
+    INTO v_product_id, v_commerce_id
+    FROM mk_products p
+    JOIN mk_commerces c ON p.MK_Commerces_CommerceId = c.CommerceId
+    WHERE p.ProductName = p_product_name
+      AND c.CommerceName = p_store_name;
+
+    IF v_product_id IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Producto o comercio no encontrado';
+    END IF;
+
+    -- Verificar inventario
+    SELECT Cantidad INTO v_current_inventory
+    FROM mk_products
+    WHERE ProductID = v_product_id;
+
+    IF v_current_inventory < p_quantity THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Inventario insuficiente';
+    END IF;
+
+    -- Crear factura
+    INSERT INTO mk_facturas (Fecha, Total, Mk_Users_UserID, MK_Commerces_CommerceId)
+    VALUES (NOW(), p_amount_paid, 1, v_commerce_id);
+
+    SET v_factura_id = LAST_INSERT_ID();
+
+    -- Detalle de factura
+    INSERT INTO mk_detallefacturas (Cantidad, PrecioUnitario, Subtotal, MK_Facturas_FacturaID, MK_Products_ProductID)
+    VALUES (p_quantity, p_amount_paid/p_quantity, p_amount_paid, v_factura_id, v_product_id);
+
+    -- Registrar pago
+    INSERT INTO mk_sales_payments (PaymentMethod, PaymentConfirmations, ReferenceNumbers, AppliedDiscounts, CustomerName, MK_Facturas_FacturaID)
+    VALUES (p_payment_method, p_payment_confirmations, p_reference_numbers, p_applied_discounts, p_customer, v_factura_id);
+
+    -- Actualizar inventario
+    UPDATE mk_products
+    SET Cantidad = Cantidad - p_quantity
+    WHERE ProductID = v_product_id;
+
+    -- Log simple de la operación
+    SET v_checksum = CRC32(CONCAT(v_product_id, v_commerce_id, p_quantity, p_amount_paid));
+
+    INSERT INTO mk_logs (descrption, Mk_Users_UserID, postTime, username, Trace, referenceId1, referenceId2, value1, value2, Checksum, Mk_logType_LogTypeId, Mk_Traduccion_TraduccionId)
+    VALUES ('Venta registrada', 1, CURDATE(), p_username, 'registerSale', v_factura_id, v_product_id, p_product_name, p_store_name, v_checksum, 1, 1);
+
+    COMMIT;
+END$$
+DELIMITER ;
+
+
+
+
+
+
+
+-- SettleCommerce:
+
+DELIMITER $$
+CREATE PROCEDURE settleCommerce(
+    IN p_commerce_name VARCHAR(100),
+    IN p_space_name VARCHAR(100),
+    IN p_computer VARCHAR(100),
+    IN p_username VARCHAR(50)
+)
+BEGIN
+    DECLARE v_commerce_id INT;
+    DECLARE v_space_id INT;
+    DECLARE v_contract_id INT;
+    DECLARE v_current_month DATE;
+    DECLARE v_sales_percentage DECIMAL(5,2);
+    DECLARE v_base_rent DECIMAL(10,2);
+    DECLARE v_total_sales DECIMAL(12,2);
+    DECLARE v_calculated_fee DECIMAL(10,2);
+    DECLARE v_total_amount DECIMAL(10,2);
+    DECLARE v_existing_settlement INT;
+    DECLARE v_checksum INT;
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+
+    SET v_current_month = DATE_FORMAT(CURDATE(), '%Y-%m-01');
+
+    -- Obtener datos del contrato y IDs
+    SELECT c.ContractId, c.SalesPercentageFee, c.BaseMonthlyRent, com.CommerceId, s.SpaceId
+    INTO v_contract_id, v_sales_percentage, v_base_rent, v_commerce_id, v_space_id
+    FROM mk_contracts c
+    JOIN mk_commerces com ON c.Mk_Commerces_CommerceId = com.CommerceId
+    JOIN mk_spaces s ON c.Mk_Spaces_SpaceId = s.SpaceId
+    WHERE com.CommerceName = p_commerce_name
+      AND s.SpaceName = p_space_name
+      AND c.Status = 'ACTIVE';
+
+    IF v_contract_id IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Contrato activo no encontrado';
+    END IF;
+
+    -- Verificar si ya hay liquidación de este mes
+    SELECT COUNT(*) INTO v_existing_settlement
+    FROM mk_monthly_settlements
+    WHERE Mk_Contracts_ContractId = v_contract_id
+      AND SettlementMonth = v_current_month;
+
+    IF v_existing_settlement > 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya se liquidó este comercio este mes';
+    END IF;
+
+    -- Calcular ventas totales
+    SELECT COALESCE(SUM(f.Total),0) INTO v_total_sales
+    FROM mk_facturas f
+    WHERE f.MK_Commerces_CommerceId = v_commerce_id
+      AND YEAR(f.Fecha) = YEAR(CURDATE())
+      AND MONTH(f.Fecha) = MONTH(CURDATE());
+
+    -- Calcular comisión y total
+    SET v_calculated_fee = v_total_sales * (v_sales_percentage/100);
+    SET v_total_amount = v_base_rent + v_calculated_fee;
+
+    -- Insertar liquidación
+    INSERT INTO mk_monthly_settlements (SettlementMonth, TotalSales, CalculatedFee, BaseRent, TotalAmount, SettlementDate, Status, Mk_Contracts_ContractId)
+    VALUES (v_current_month, v_total_sales, v_calculated_fee, v_base_rent, v_total_amount, NOW(), 'PENDING', v_contract_id);
+
+    -- Log de la operación
+    SET v_checksum = CRC32(CONCAT(v_contract_id, v_total_sales, v_total_amount));
+
+    INSERT INTO mk_logs (descrption, Mk_Users_UserID, postTime, username, Trace, referenceId1, referenceId2, value1, value2, Checksum, Mk_logType_LogTypeId, Mk_Traduccion_TraduccionId)
+    VALUES ('Liquidación mensual', 1, CURDATE(), p_username, 'settleCommerce', v_contract_id, LAST_INSERT_ID(), p_commerce_name, p_space_name, v_checksum, 1, 1);
+
+    COMMIT;
+END$$
+DELIMITER ;
+
+
+
+
+
+
+
+-- VISTA:
+CREATE VIEW business_monthly_report AS
+SELECT 
+    c.CommerceName AS Business_Name,
+    s.SpaceName AS Store_Space_Name,
+    b.BuildingName AS Building_Name,
+    MIN(f.Fecha) AS First_Sale_Date,
+    MAX(f.Fecha) AS Last_Sale_Date,
+    SUM(df.Cantidad) AS Items_Sold,
+    SUM(f.Total) AS Total_Sales_Amount,
+    con.SalesPercentageFee AS Fee_Percentage,
+    (SUM(f.Total)*con.SalesPercentageFee/100) AS Fee_Amount,
+    con.BaseMonthlyRent AS Monthly_Rent
+FROM mk_commerces c
+JOIN mk_contracts con ON c.CommerceId = con.Mk_Commerces_CommerceId
+JOIN mk_spaces s ON con.Mk_Spaces_SpaceId = s.SpaceId
+JOIN mk_buildings b ON s.Mk_Buildings_BuildingId = b.BuildingId
+LEFT JOIN mk_facturas f ON c.CommerceId = f.MK_Commerces_CommerceId
+      AND YEAR(f.Fecha)=YEAR(CURDATE())
+      AND MONTH(f.Fecha)=MONTH(CURDATE())
+LEFT JOIN mk_detallefacturas df ON f.FacturaID = df.MK_Facturas_FacturaID
+WHERE con.Status='ACTIVE'
+GROUP BY c.CommerceId, s.SpaceId, b.BuildingId, con.SalesPercentageFee, con.BaseMonthlyRent;

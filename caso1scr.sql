@@ -718,4 +718,62 @@ insert into mk_permisos_por_perfil(Permisos_por_perfiIdl,postTime,Deleted,MK_Per
 insert into mk_permisos_por_perfil(Permisos_por_perfiIdl,postTime,Deleted,MK_Permisos_MK_PermisosId)values
 ('5','2025-11-02',0,'2');
 select *from mk_permisos_por_perfil;
- 
+select * from mk_countries;
+insert into mk_countries(CountriesId, Name, currencySimbol, language, curency,Mk_Estados_EstadosId)values
+('1','Costa Rica','cr','español','cr','1');
+insert into mk_countries(CountriesId, Name, currencySimbol, language, curency,Mk_Estados_EstadosId)values
+('2','Nicaragua','ni','español','ni','2');
+insert into mk_countries(CountriesId, Name, currencySimbol, language, curency,Mk_Estados_EstadosId)values
+('3','España','esp','español','esp','4');
+insert into mk_countries(CountriesId, Name, currencySimbol, language, curency,Mk_Estados_EstadosId)values
+('4','Estados Unidos','Eu','eu','Eu','3');
+insert into mk_countries(CountriesId, Name, currencySimbol, language, curency,Mk_Estados_EstadosId)values
+('5','Egipto','arabe','eg','4');
+insert into mk_countries(CountriesId, Name, currencySimbol, language, curency,Mk_Estados_EstadosId)values
+('6','Russia','rus','ruso','rus','5');
+select * from mk_countries;
+select * from mk_estados;
+insert into mk_estados(EstadosId, Name, Mk_Cities_CitiesId
+)values
+('1','san jose','1');
+insert into mk_estados(EstadosId, Name, Mk_Cities_CitiesId
+)values
+('2','Guanacaste','1');
+insert into mk_estados(EstadosId, Name, Mk_Cities_CitiesId
+)values
+('3','Limon','3');
+insert into mk_estados(EstadosId, Name, Mk_Cities_CitiesId
+)values
+('4','Heredia','2');
+insert into mk_estados(EstadosId, Name, Mk_Cities_CitiesId
+)values
+('5','Puntarenas','3');
+insert into mk_estados(EstadosId, Name, Mk_Cities_CitiesId
+)values
+('6','Cartago','4');
+select *from mk_estados;
+
+select * from mk_cities;
+insert into mk_cities(CitiesId,name,Mk_Address_AddressID)values
+('1','Desamparados','1');
+insert into mk_cities(CitiesId,name,Mk_Address_AddressID)values
+('2','San Rafael','2');
+insert into mk_cities(CitiesId,name,Mk_Address_AddressID)values
+('3','Tibas','1');
+insert into mk_cities(CitiesId,name,Mk_Address_AddressID)values
+('4','Aserrí','3');
+insert into mk_cities(CitiesId,name,Mk_Address_AddressID)values
+('5','San Miguel','2');
+select * from (mk_cities);
+select * from mk_address;
+insert into mk_address (AddressId, Name)values
+('1','Quebrada Honda');
+insert into mk_address (AddressId, Name)values
+('2','Guadarrama');
+insert into mk_address (AddressId, Name)values
+('3','El Rosario');
+insert into mk_address (AddressId, Name)values
+('4','La fila');
+insert into mk_address (AddressId, Name)values
+('5','Rio Conejo');
+select * from mk_address;

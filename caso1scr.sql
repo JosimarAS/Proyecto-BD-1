@@ -676,3 +676,46 @@ CREATE INDEX `fk_Mk_UserAddresses_Mk_Users1_idx` ON `mydb`.`mk_useraddresses` (`
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+select *from mk_users;
+insert into mk_users(UserID, email,FirstName,LastName)values
+
+(1,'bryan','Bryan','marin');
+insert into mk_users(UserID, email,FirstName,LastName)values
+(2,'bryanm','Josue','marin');
+insert into mk_users(UserID, email,FirstName,LastName)values
+(3,'hectorgonzales@gmail.com','Hector','Gonzales');
+insert into mk_users(UserID, email,FirstName,LastName)values
+(4,'wendypadilla@gmail.com','Wendy','Montero');
+insert into mk_users(UserID, email,FirstName,LastName)values
+(5,'Cesar@gmail.com','cesar','Velverde');
+insert into mk_users(UserID, email,FirstName,LastName)values
+(6,'prijh@gmail.com','Priscila','Jiménez');
+select *from mk_users;
+select *from mk_permisos;
+insert into mk_permisos(MK_PermisosId, Description, Code, PostTime)values
+('1','tiene acceso a ver precios','064','2025-09-30');
+insert into mk_permisos(MK_PermisosId, Description, Code, PostTime)values
+('2','no tiene acceso a ver precios','06','2025-10-30');
+insert into mk_permisos(MK_PermisosId, Description, Code, PostTime)values
+('3','no tiene acceso a ver productos','056','2025-10-1');
+insert into mk_permisos(MK_PermisosId, Description, Code, PostTime)values
+('4','tiene acceso a ver produtcos','046','2025-09-30');
+insert into mk_permisos(MK_PermisosId, Description, Code, PostTime)values
+('5','tiene acceso a ver precios y comprar','076','2025-10-02');
+insert into mk_permisos(MK_PermisosId, Description, Code, PostTime)values
+('2','no tiene acceso a compra','060','2025-09-30');
+
+select *from mk_permisos;
+select * from mk_permisos_por_perfil;
+insert into mk_permisos_por_perfil(Permisos_por_perfiIdl,postTime,Deleted,MK_Permisos_MK_PermisosId)values
+('1','2025-10-02',0,'2');
+insert into mk_permisos_por_perfil(Permisos_por_perfiIdl,postTime,Deleted,MK_Permisos_MK_PermisosId)values
+('2','2025-10-02',0,'1');
+insert into mk_permisos_por_perfil(Permisos_por_perfiIdl,postTime,Deleted,MK_Permisos_MK_PermisosId)values
+('3','2025-10-12',1,'3');
+insert into mk_permisos_por_perfil(Permisos_por_perfiIdl,postTime,Deleted,MK_Permisos_MK_PermisosId)values
+('4','2025-10-22',1,'2');
+insert into mk_permisos_por_perfil(Permisos_por_perfiIdl,postTime,Deleted,MK_Permisos_MK_PermisosId)values
+('5','2025-11-02',0,'2');
+select *from mk_permisos_por_perfil;
+ 
